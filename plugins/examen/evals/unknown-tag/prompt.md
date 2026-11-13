@@ -1,6 +1,6 @@
 ---
 name: unknown-tag
-tags: [edge]
+tags: [edge, negative]
 max_turns: 3
 allowed_tools: [Skill]
 ---

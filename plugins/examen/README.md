@@ -18,7 +18,7 @@ A response-format protocol for Claude. Start a message with a one-letter tag and
 
 Append `%` to any tag to add the confidence line, for example `y%:` or `v%:`.
 
-If the tag is unknown or the question can't fit the format, Claude says so in one line and uses the closest valid format.
+If the question can't fit the format, Claude says so in one line and uses the closest valid format. A message with an unknown tag (`x:`) is answered normally.
 
 ## Commands
 
@@ -44,7 +44,7 @@ Each tag also has a command that takes the question as its argument, for example
 ## Install
 
 ```
-/plugin marketplace add mmarusyk/examen
+/plugin marketplace add <owner>/examen-marketplace
 /plugin install examen@examen-marketplace
 ```
 

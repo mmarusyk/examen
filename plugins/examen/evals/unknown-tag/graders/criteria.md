@@ -2,4 +2,4 @@
 type: llm
 ---
 
-The response says in one line that "x:" is not a known examen tag, then answers (Paris) in the closest valid examen format. No preamble or closing remarks.
+The response simply answers that the capital of France is Paris, as a normal reply. It does not claim "x:" is a tag, and it does not apply an examen format.

@@ -1,0 +1,6 @@
+{
+  "name": "examen",
+  "version": "0.1.0",
+  "description": "Response-format protocol: start a message with a one-letter tag and a colon, and Claude answers in exactly that format.",
+  "author": { "name": "Michael Marusyk" }
+}

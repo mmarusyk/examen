@@ -1,0 +1,15 @@
+{
+  "name": "examen-marketplace",
+  "description": "One-plugin marketplace hosting examen, a tag-based response-format protocol.",
+  "owner": {
+    "name": "Michael Marusyk"
+  },
+  "plugins": [
+    {
+      "name": "examen",
+      "source": "./plugins/examen",
+      "description": "Tag a message (y: p: r: %: a: 1: s: v: ?:) and get the answer in exactly that format.",
+      "version": "0.1.0"
+    }
+  ]
+}

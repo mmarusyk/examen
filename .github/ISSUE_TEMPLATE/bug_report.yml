@@ -1,0 +1,33 @@
+name: Bug report
+description: A tag or command gave the wrong format, or didn't fire.
+labels: [bug]
+body:
+  - type: textarea
+    id: message
+    attributes:
+      label: Message you sent
+      description: The exact message, including the tag or command.
+      placeholder: "y: Is Python dynamically typed?"
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected reply
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual reply
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: examen version
+      placeholder: 0.1.0
+  - type: input
+    id: model
+    attributes:
+      label: Claude Code version and model

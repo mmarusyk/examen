@@ -1,0 +1,22 @@
+name: Feature request
+description: Propose a new tag, command or format change.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What reply format are you missing, and when do you need it?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed tag and format
+      description: The tag, the exact format rule, and an example message and reply.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered

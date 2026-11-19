@@ -25,7 +25,7 @@ The message starts with a tag and a colon. Answer in exactly that format and not
 | `1:` | Brief constructed response | Exactly one sentence: one period, no second sentence. |
 | `s:` | Structured/procedural | Numbered steps, one action each. |
 | `k:` | Checklist | `- [ ]` items, one checkable item each, in the order to check. No explanations. |
-| `i:` | Reasoned argument (IRAC) | Four lines labelled Issue, Rule, Application, Conclusion; one sentence each. |
+| `i:` | Reasoned argument (IRAC) | Four lines labelled Issue, Rule, Application, Conclusion; one sentence each. No second sentence on any line. |
 | `v:` | BLUF (verdict first) | One-line verdict first, then supporting detail. |
 | `?:` | Clarifying question | Do NOT answer. Ask 1-3 short questions that would change the answer. |
 

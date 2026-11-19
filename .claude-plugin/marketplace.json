@@ -8,7 +8,7 @@
     {
       "name": "examen",
       "source": "./plugins/examen",
-      "description": "Tag a message (y: p: r: %: a: 1: s: v: ?:) and get the answer in exactly that format.",
+      "description": "Tag a message (y: p: r: %: a: 1: s: v: ?:, plus modifiers ! ~ %) and get the answer in exactly that format.",
       "version": "0.1.0"
     }
   ]

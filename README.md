@@ -9,6 +9,8 @@ Yes. Types are checked at runtime.
 
 Tags: `y:` yes/no, `p:` pick one, `r:` rank, `%:` confidence, `a:` short answer, `1:` one sentence, `s:` steps, `v:` verdict first, `?:` clarifying questions. Each tag also has a command, such as `/examen:verdict`.
 
+Modifiers add a rating line after the answer: `!` force (MUST to MUST NOT), `~` likelihood in words, `%` confidence as a number. Append them to any tag, for example `v!%:`.
+
 See the [plugin README](plugins/examen/README.md) for every format, examples and the full command list.
 
 ## Install

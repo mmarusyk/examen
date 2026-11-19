@@ -1,6 +1,6 @@
 ---
 name: examen
-description: Answer in a strict format chosen by a tag. Activate ONLY when the user's message BEGINS with one of these tags immediately followed by a colon - y: p: r: %: a: 1: s: v: ?: (optionally with % appended, e.g. y%:). Never activate when a tag appears mid-message or without the colon.
+description: Answer in a strict format chosen by a tag. Activate ONLY when the user's message BEGINS with one of these tags immediately followed by a colon - y: p: r: %: a: 1: s: v: ?: (optionally with modifiers % ~ ! appended, e.g. y%:, v!~:). Never activate when a tag appears mid-message or without the colon.
 ---
 
 # Examen
@@ -19,7 +19,21 @@ The message starts with a tag and a colon. Answer in exactly that format and not
 | `v:` | BLUF (verdict first) | One-line verdict first, then supporting detail. |
 | `?:` | Clarifying question | Do NOT answer. Ask 1-3 short questions that would change the answer. |
 
-**Combining:** `%` may be appended to any tag (`y%:`, `p%:`, `v%:` ...). Answer in the base format, then add `Confidence: NN%` as the last line. That line is exactly `Confidence: NN%`, on its own line, with nothing after it, not even a caveat. The line is required for every base format, `v:` included, and never replaced by confidence written inside the answer. The base format's own limits (one sentence for `1:`) still apply before it.
+## Modifiers
+
+Append any of these to a tag, each at most once, in any order (`y%:`, `v!:`, `v!~%:`). Answer in the base format, then add one trailer line per modifier.
+
+| Modifier | Trailer line | Allowed values |
+|---|---|---|
+| `!` | `Force: <level>` | MUST, SHOULD, MAY, SHOULD NOT, MUST NOT, none |
+| `~` | `Likelihood: <label> (<range>)` | Almost no chance (1-5%), Very unlikely (5-20%), Unlikely (20-45%), Roughly even (45-55%), Likely (55-80%), Very likely (80-95%), Almost certain (95-99%) |
+| `%` | `Confidence: NN%` | 1-99, calibrated |
+
+- Trailer lines come in this order: Force, Likelihood, Confidence. `Confidence` is always the last line.
+- Each trailer line is exactly as shown, on its own line, with nothing after it, not even a caveat. Never replace a trailer with the same rating written inside the answer.
+- Every trailer asked for is required for every base format, `v:` included. The base format's own limits (one sentence for `1:`) still apply before the trailers.
+- `!` rates the action the question asks about, or the action the answer recommends if the question names none. "Should we use microservices?" answered no is `Force: SHOULD NOT`. If no action is in play, the line is `Force: none`.
+- `~` rates how sure the answer is, as a label with its range. With `%` too, the range contains the `%` value (`Likely (55-80%)` with `Confidence: 70%`).
 
 ## Rules
 

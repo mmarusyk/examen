@@ -16,7 +16,17 @@ A response-format protocol for Claude. Start a message with a one-letter tag and
 | `v:` | Verdict first (BLUF), then supporting detail | `v: Should we cache this endpoint?` | Yes, cache it for 60 seconds. It is read-heavy and tolerates stale data... |
 | `?:` | Clarify: don't answer; ask 1-3 questions that would change the answer | `?: Which database should I use?` | What data shape? Expected scale? Hosted or self-run? |
 
-Append `%` to any tag to add the confidence line, for example `y%:` or `v%:`.
+## Modifiers
+
+Append modifiers to any tag, each at most once and in any order, for example `y%:` or `v!~%:`. Each adds one trailer line after the answer, always in the order shown below, so `Confidence` stays last.
+
+| Modifier | Rates | Trailer line | Values |
+|---|---|---|---|
+| `!` | Force: how strongly the answer pushes its action | `Force: SHOULD NOT` | MUST, SHOULD, MAY, SHOULD NOT, MUST NOT, none |
+| `~` | Likelihood: how sure the answer is, in words | `Likelihood: Likely (55-80%)` | Almost no chance (1-5%) up to Almost certain (95-99%), seven bands |
+| `%` | Confidence: how sure the answer is, as a number | `Confidence: 70%` | 1-99 |
+
+With `~` and `%` together, the likelihood band contains the confidence number.
 
 If the question can't fit the format, Claude says so in one line and uses the closest valid format. A message with an unknown tag (`x:`) is answered normally.
 
@@ -35,10 +45,12 @@ Each tag also has a command that takes the question as its argument, for example
 | `s:` | `/examen:steps` | `/examen:s` |
 | `v:` | `/examen:verdict` | `/examen:v` |
 | `?:` | `/examen:clarify` | `/examen:q` |
+| `!` | `/examen:force` | `/examen:f` |
+| `~` | `/examen:likelihood` | `/examen:l` |
 
 ## Tags or commands?
 
-- **Tags** (`v: ...`) are handled by the examen skill. Claude loads the skill when your message starts with a tag. This is faster to type and the only way to combine tags with `%`. Because Claude decides when to load the skill, it can occasionally miss a tagged message.
+- **Tags** (`v: ...`) are handled by the examen skill. Claude loads the skill when your message starts with a tag. This is faster to type and the only way to combine a tag with modifiers. Because Claude decides when to load the skill, it can occasionally miss a tagged message.
 - **Commands** (`/examen:verdict ...`) always run, and each holds its full instructions. Use them when the format must be guaranteed.
 
 ## Install
@@ -50,7 +62,7 @@ Each tag also has a command that takes the question as its argument, for example
 
 ## Evals
 
-[`evals/`](evals/) holds one folder per case: a `prompt.md` with the tagged message and a `graders/` folder of regex, LLM-judge and skill-loaded checks. Cases cover every tag, every `%` combination, every command and alias, edge cases and messages that must not trigger the skill. Each case also runs without the plugin, so the report shows what examen adds.
+[`evals/`](evals/) holds one folder per case: a `prompt.md` with the tagged message and a `graders/` folder of regex, LLM-judge and skill-loaded checks. Cases cover every tag, every `%` combination, every modifier and the trailer order, every command and alias, edge cases and messages that must not trigger the skill. Each case also runs without the plugin, so the report shows what examen adds.
 
 ```
 claude plugin eval plugins/examen -j 8 --no-publish          # all cases
